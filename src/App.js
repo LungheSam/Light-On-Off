@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import 'boxicons/css/boxicons.min.css';
 
 function App() {
+  const [btnText,setBtnText]=React.useState("Off");
+  const [bulbState,setBulbState]=React.useState(false);
+  const changeState=()=>{
+    setBulbState(!bulbState);
+    setBtnText(bulbState?"On":"Off");
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='title'>Light Bulb</h1>
+      <div className={bulbState?'bulb-light':'bulb-light-off'}>
+        <i class='bx bxs-bulb'></i>
+      </div>
+      <button className={bulbState?"btn light-on":"btn"} onClick={()=>changeState()}>{btnText}</button>
     </div>
   );
 }
